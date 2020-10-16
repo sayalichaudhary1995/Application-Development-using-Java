@@ -3,7 +3,9 @@ package UserInterface.AdminstrativeRole;
 import Business.Supplier;
 import Business.SupplierDirectory;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -39,6 +41,12 @@ public class AddSupplier extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
 
         jLabel1.setText("Name");
+
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("NEW SUPPLIER");
 
@@ -96,7 +104,14 @@ public class AddSupplier extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-
+        String username= txtName.getText();
+        if(username == null || username.equals("")){
+            
+            txtName.setBorder(BorderFactory.createLineBorder(Color.red));
+            jLabel1.setForeground(Color.red);
+            JOptionPane.showMessageDialog(null,"please enter name","Warning",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         Supplier supplier = supplierDirectory.addSupplier();
         supplier.setSupplyName(txtName.getText());
         JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -106,6 +121,10 @@ public class AddSupplier extends javax.swing.JPanel {
 
         backAction();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
 
     private void backAction(){
         userProcessContainer.remove(this);

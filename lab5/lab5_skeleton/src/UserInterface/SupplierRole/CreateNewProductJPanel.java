@@ -3,7 +3,9 @@ package UserInterface.SupplierRole;
 import Business.Product;
 import Business.Supplier;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -91,7 +93,14 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         add(txtPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 160, 30));
     }// </editor-fold>//GEN-END:initComponents
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-
+        String username= txtName.getText();
+        
+        if(username == null || username.equals("")){
+          
+            JOptionPane.showMessageDialog(null,"please enter name","Warning",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
         Product p = supplier.getProductCatalog().addProduct();
         p.setProdName(txtName.getText());
         p.setAvail(Integer.parseInt(txtAvailability.getText()));
