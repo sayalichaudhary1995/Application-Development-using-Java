@@ -104,7 +104,7 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         Product p = supplier.getProductCatalog().addProduct();
         p.setProdName(txtName.getText());
         p.setAvail(Integer.parseInt(txtAvailability.getText()));
-        String stringPrice = txtAvailability.getText();
+        String stringPrice = txtPrice1.getText();
         if(stringPrice.isEmpty()==false){
             int price = Integer.parseInt(stringPrice);
             p.setPrice(price);

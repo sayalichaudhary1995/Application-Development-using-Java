@@ -21,7 +21,7 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         txtName.setText(p.getProdName());
         txtId.setText(String.valueOf(p.getModelNumber()));
         txtPrice.setText(String.valueOf(p.getPrice()));
-        txtAvailability.setText(String.valueOf(p.getPrice()));
+        txtAvailability.setText(String.valueOf(p.getAvail()));
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -107,6 +107,11 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
         txtAvailability.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtAvailability.setEnabled(false);
+        txtAvailability.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAvailabilityActionPerformed(evt);
+            }
+        });
         add(txtAvailability, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 160, 30));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,6 +141,10 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         product.setPrice(Integer.parseInt(txtPrice.getText()));
         product.setProdName(txtName.getText());
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtAvailabilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAvailabilityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAvailabilityActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;

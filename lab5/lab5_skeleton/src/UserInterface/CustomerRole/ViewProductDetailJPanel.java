@@ -77,6 +77,11 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         txtPrice.setEditable(false);
         txtPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtPrice.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPriceActionPerformed(evt);
+            }
+        });
         add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 159, -1));
 
         backButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -110,6 +115,10 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backButton1ActionPerformed
+
+    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPriceActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
