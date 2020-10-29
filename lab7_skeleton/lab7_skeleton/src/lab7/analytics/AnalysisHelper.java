@@ -165,6 +165,7 @@ public class AnalysisHelper {
             prevNumberOfPosts = numberOfPosts;
             System.out.println("User Id :" + userid + " Created " + numberOfPosts + " Comments");
         }
+        System.out.println("-------------------");
 
         
     }
@@ -215,8 +216,10 @@ public class AnalysisHelper {
             int userid = list.get(i).getKey();
             int totalSum = list.get(i).getValue();
             System.out.println("User Id : " + userid + " has total " + totalSum );
-        }               
+        }      
+            System.out.println("-------------------");
     }
+        
               
         public void getTopFiveActiveUsersOverallBasedonSumOfCommentsLikesAndPosts() {
 
@@ -228,6 +231,7 @@ public class AnalysisHelper {
             int userid = list.get(i).getKey();
             int totalSum = list.get(i).getValue();
             System.out.println("User Id : " + userid + " has total " + totalSum );
-        }        
+        }   System.out.println("-------------------");     
     }
+            
 }

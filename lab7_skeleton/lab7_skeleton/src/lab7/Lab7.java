@@ -97,7 +97,7 @@ public class Lab7 {
         helper.getMostCommentedPost();
         helper.getTopFiveInactiveUsersBasedOnTotalPostNumber();
         helper.getTopFiveInactiveUsersBasedOnTotalCommentsTheyCreated();
-        //shelper.getTopFiveActiveUsersOverallBasedonSumOfCommentsLikesAndPosts();
+        helper.getTopFiveActiveUsersOverallBasedonSumOfCommentsLikesAndPosts();
         helper.getTopFiveInactiveUsersOverallBasedonSumOfCommentsLikesAndPosts();
         
     }
