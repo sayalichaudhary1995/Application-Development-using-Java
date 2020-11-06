@@ -46,10 +46,11 @@ public class UserAccountDirectory {
         return userAccount;
     }
     
-    public boolean checkIfUsernameIsUnique(String username){
-        for (UserAccount ua : userAccountList){
-            if (ua.getUsername().equals(username))
+    public boolean checkIfUsernameIsUnique(String username, ArrayList<UserAccount> userAccList) {
+        for (UserAccount ua : userAccList) {
+            if (ua.getUsername().equals(username)) {
                 return false;
+            }
         }
         return true;
     }
