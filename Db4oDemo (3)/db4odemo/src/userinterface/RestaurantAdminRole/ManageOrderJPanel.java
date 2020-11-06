@@ -1,11 +1,11 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.DeliveryManRole;
+package userinterface.RestaurantAdminRole;
 
 import Business.EcoSystem;
-
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
@@ -15,40 +15,33 @@ import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-//import userinterface.RestaurantAdminRole.AssignDeliveryManJPanel;
 
 /**
  *
- * @author raunak
+ * @author sayu
  */
-public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
-
-    private JPanel userProcessContainer;
-    private EcoSystem business;
-    private UserAccount userAccount;
+public class ManageOrderJPanel extends javax.swing.JPanel {
+ private JPanel userProcessContainer;
+    private UserAccount userAcc;
     private EcoSystem system;
-    
+
     /**
-     * Creates new form LabAssistantWorkAreaJPanel
+     * Creates new form ManageOrderJPanel
      */
-   public DeliveryManWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
+     public ManageOrderJPanel(JPanel userProcessContainer, UserAccount userAcc, EcoSystem system) {
         initComponents();
-        
         this.userProcessContainer = userProcessContainer;
-        this.userAccount = account;
-        this.business = business;
+        this.userAcc = userAcc;
         this.system = system;
-        
         populateTable();
     }
-    
-    public void populateTable(){
+public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) orderJTable.getModel();
 
         model.setRowCount(0);
 
         for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
-            if (userAccount.equals(request.getReceiver())) {
+            if (request.getRestaurantName().equals(userAcc.getEmployee().getName())) {
                 Object[] row = new Object[5];
                 row[0] = request.getRestaurantName();
                 row[1] = request.getRequestDate();
@@ -58,10 +51,8 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
                 model.addRow(row);
             }
-
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,12 +62,24 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        viewOrderDetailsJButton = new javax.swing.JButton();
+        backJButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         orderJTable = new javax.swing.JTable();
-        processJButton = new javax.swing.JButton();
-        refreshJButton = new javax.swing.JButton();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        viewOrderDetailsJButton.setText("View Order Details");
+        viewOrderDetailsJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewOrderDetailsJButtonActionPerformed(evt);
+            }
+        });
+
+        backJButton.setText("<<Back");
+        backJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButtonActionPerformed(evt);
+            }
+        });
 
         orderJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,27 +109,34 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(orderJTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 550, 110));
-
-        processJButton.setText("Process");
-        processJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                processJButtonActionPerformed(evt);
-            }
-        });
-        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
-
-        refreshJButton.setText("Refresh");
-        refreshJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshJButtonActionPerformed(evt);
-            }
-        });
-        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backJButton)
+                        .addGap(201, 201, 201)
+                        .addComponent(viewOrderDetailsJButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewOrderDetailsJButton)
+                    .addComponent(backJButton))
+                .addContainerGap(127, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
-
+    private void viewOrderDetailsJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewOrderDetailsJButtonActionPerformed
         int selectedRow = orderJTable.getSelectedRow();
         if (selectedRow >= 0) {
             OrderWorkRequest order = new OrderWorkRequest();
@@ -143,26 +153,28 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
             for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
                 if ((request.getSender().equals(sender)) && (request.getRequestDate().equals(datePlaced)) && (request.getRestaurantName().equals(restaurant)) && (Objects.equals(request.getOrderAmount(), orderAmt))) {
                     order = (OrderWorkRequest) request;
-                    order.setStatus("Delivered");
-                    order.setResolveDate(new Date());
-                    system.getWorkQueue().getWorkRequestList().remove(request);
-                    system.getWorkQueue().getWorkRequestList().add(order);
                 }
             }
-            JOptionPane.showMessageDialog(null, "Order delivered !");
+            AssignDeliveryManJPanel assignDeliveryManJPanel = new AssignDeliveryManJPanel(userProcessContainer, system, order);
+            userProcessContainer.add("assignDeliveryManJPanel", assignDeliveryManJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
         } else {
             JOptionPane.showMessageDialog(null, "Please select a Row!!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_processJButtonActionPerformed
+    }//GEN-LAST:event_viewOrderDetailsJButtonActionPerformed
 
-    private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
-        populateTable();
-    }//GEN-LAST:event_refreshJButtonActionPerformed
+    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backJButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backJButton;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orderJTable;
-    private javax.swing.JButton processJButton;
-    private javax.swing.JButton refreshJButton;
+    private javax.swing.JButton viewOrderDetailsJButton;
     // End of variables declaration//GEN-END:variables
 }
