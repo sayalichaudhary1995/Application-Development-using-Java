@@ -6,6 +6,7 @@ package Business.WorkQueue;
 
 import Business.UserAccount.UserAccount;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
@@ -13,23 +14,42 @@ import java.util.Date;
  */
 public abstract class WorkRequest {
 
-    private String message;
+     private String restaurantName;
+    private Double orderAmount;
     private UserAccount sender;
     private UserAccount receiver;
     private String status;
     private Date requestDate;
     private Date resolveDate;
+    private HashMap<String,Integer> orderItem;
     
     public WorkRequest(){
+        
         requestDate = new Date();
     }
 
-    public String getMessage() {
-        return message;
+    public String getRestaurantName() {
+        return restaurantName;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
+    public HashMap<String, Integer> getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(HashMap<String, Integer> orderItem) {
+        this.orderItem = orderItem;
+    }
+    
+    public Double getOrderAmount() {
+        return orderAmount;
+    }
+
+    public void setOrderAmount(Double orderAmount) {
+        this.orderAmount = orderAmount;
     }
 
     public UserAccount getSender() {
