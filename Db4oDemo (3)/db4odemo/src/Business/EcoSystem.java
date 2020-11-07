@@ -22,18 +22,12 @@ public class EcoSystem extends Organization{
     
     private static EcoSystem business;
     private EnterpriseDirectory enterpriseDirectory;
-   //private RestaurantDirectory restaurantDirectory;
+   
     private CustomerDirectory customerDirectory;
     private DeliveryManDirectory deliveryManDirectory;
     private OrderDirectory orderDirectory;
 
-   /* public EcoSystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliveryManDirectory deliveryManDirectory) {
-
-        this.restaurantDirectory = restaurantDirectory;
-        this.customerDirectory = customerDirectory;
-        this.deliveryManDirectory = deliveryManDirectory;
-    }*/
-    
+      
       
     private EcoSystem(){
         super(null);

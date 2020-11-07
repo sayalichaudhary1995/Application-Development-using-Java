@@ -51,12 +51,12 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         for(Order order:business.getOrderDirectory().getOrderList()) {
    if(order.getRestaurantName()!=null && order.getRestaurantName().equals(enterprise.getName())){
-            Object row[] = new Object[4];
+            Object row[] = new Object[5];
             row[0] = order;
             row[1] = order.getCustomerId();
             row[2] = order.getCustomerName();
-       //     row[3] = order.getCustomerNotes();
             row[3] = order.getStatus();
+            row[4] = order.getCustomerNotes();
       //      row[5] = order.getFeedback();
             dtm.addRow(row);
         }
@@ -85,20 +85,20 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
 
         orderRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Order Id", "Customer Id", "Customer Name", "Status"
+                "Order Id", "Customer Id", "Customer Name", "Status", "Customer Notes"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
