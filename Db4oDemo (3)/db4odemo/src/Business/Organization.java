@@ -21,20 +21,18 @@ public abstract class Organization {
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
-    private static int counter = 0;
-
-    public enum Type {
+    private static int counter=0;
+    
+    public enum Type{
         RestaurantAdmin("RestaurantAdmin"),
         Customer("Customer"),
-        DeliveryMan("Delivery"),
+        DeliveryMan("DeliveryMan"),
         SysAdmin("Sysadmin");
-
+        
         private String value;
-
         private Type(String value) {
             this.value = value;
         }
-
         public String getValue() {
             return value;
         }
@@ -48,19 +46,13 @@ public abstract class Organization {
         organizationID = counter;
         ++counter;
     }
-
-    public Organization() {
-
+    public Organization(){
+        
     }
-
     public abstract ArrayList<Role> getSupportedRole();
-
+    
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
-    }
-
-    public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
-        this.userAccountDirectory = userAccountDirectory;
     }
 
     public int getOrganizationID() {
@@ -70,7 +62,7 @@ public abstract class Organization {
     public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;
     }
-
+    
     public String getName() {
         return name;
     }
@@ -91,5 +83,6 @@ public abstract class Organization {
     public String toString() {
         return name;
     }
-
+    
+    
 }

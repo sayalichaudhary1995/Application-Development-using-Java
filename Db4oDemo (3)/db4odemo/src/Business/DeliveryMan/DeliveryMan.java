@@ -5,44 +5,26 @@
  */
 package Business.DeliveryMan;
 
+import Business.Organization;
+import Business.Role.DeliveryManRole;
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author harold
  */
-public class DeliveryMan {
-    private String name;
-    private int id;
-    private static int count = 1;
-    private long contact;
+public class DeliveryMan extends Organization{
 
-    public DeliveryMan() {
-        id = count;
-        count++;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public long getContact() {
-        return contact;
-    }
-
-    public void setContact(long contact) {
-        this.contact = contact;
+      public DeliveryMan() {
+        super(Organization.Type.DeliveryMan.getValue());
     }
     
     @Override
-    public String toString() {
-        return name;
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> roles = new ArrayList();
+        roles.add(new DeliveryManRole());
+        return roles;
     }
-
+  
 }

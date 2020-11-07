@@ -5,6 +5,7 @@
  */
 package Business.DeliveryMan;
 
+import Business.Organization;
 import java.util.ArrayList;
 
 /**
@@ -12,25 +13,35 @@ import java.util.ArrayList;
  * @author harold
  */
 public class DeliveryManDirectory {
-    private ArrayList<DeliveryMan> deliveryManList;
+      private ArrayList<Organization> organizationList;
 
     public DeliveryManDirectory() {
-        deliveryManList = new ArrayList<>();
+        organizationList = new ArrayList();
     }
 
-    public ArrayList<DeliveryMan> getDeliveryManList() {
-        return deliveryManList;
+    public ArrayList<Organization> getOrganizationList() {
+        return organizationList;
     }
-
-    public void setDeliveryManList(ArrayList<DeliveryMan> deliveryManList) {
-        this.deliveryManList = deliveryManList;
+    
+    public Organization createOrganization(Organization.Type type){
+        Organization organization = null;
+        if (type.getValue().equals(Organization.Type.DeliveryMan.getValue())){
+            organization = new DeliveryMan();
+            organizationList.add(organization);
+        }
+        return organization;
     }
-
-    public DeliveryMan createDeliveryMan(String name, long contact) {
-        DeliveryMan deliveryMan = new DeliveryMan();
-        deliveryMan.setName(name);
-        deliveryMan.setContact(contact);
-        return deliveryMan;
+    
+       public void deleteDeliveryMan(DeliveryMan deliveryMan){
+        organizationList.remove(deliveryMan); 
     }
- 
+       
+        public Organization searchOrganization(String organizationName){
+        for (Organization organization: organizationList) {
+            if (organization.getName().equals(organizationName)) {
+                return organization;
+            }
+        }
+        return null;
+    }
 }

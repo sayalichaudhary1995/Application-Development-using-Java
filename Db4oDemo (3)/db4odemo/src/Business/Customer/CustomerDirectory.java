@@ -5,6 +5,7 @@
  */
 package Business.Customer;
 
+import Business.Organization;
 import java.util.ArrayList;
 
 /**
@@ -12,26 +13,36 @@ import java.util.ArrayList;
  * @author harold
  */
 public class CustomerDirectory {
-    private ArrayList<Customer> customerList;
+      private ArrayList<Organization> organizationList;
 
     public CustomerDirectory() {
-        customerList = new ArrayList();
+        organizationList = new ArrayList();
     }
 
-    public ArrayList<Customer> getCustomerList() {
-        return customerList;
+    public ArrayList<Organization> getOrganizationList() {
+        return organizationList;
     }
-
-    public void setCustomerList(ArrayList<Customer> customerList) {
-        this.customerList = customerList;
+    
+    public Organization createOrganization(Organization.Type type){
+        Organization organization = null;
+      if (type.getValue().equals(Organization.Type.Customer.getValue())){
+            organization = new Customer();
+            organizationList.add(organization);
+        }
+        return organization;
     }
-
-    public Customer createCustomer(String name, String address, long contact, String email) {
-        Customer customer = new Customer();
-        customer.setName(name);
-        customer.setAddress(address);
-        customer.setContact(contact);
-        customer.setEmail(email);
-        return customer;
+    
+   
+      public void deleteCustomer(Customer customer){
+        organizationList.remove(customer); 
+    }
+    
+        public Organization searchOrganization(String organizationName){
+        for (Organization organization: organizationList) {
+            if (organization.getName().equals(organizationName)) {
+                return organization;
+            }
+        }
+        return null;
     }
 }

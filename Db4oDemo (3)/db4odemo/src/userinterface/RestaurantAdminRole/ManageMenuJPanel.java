@@ -6,12 +6,12 @@
 package userinterface.RestaurantAdminRole;
 
 import Business.EcoSystem;
-import Business.Restaurant.Restaurant;
-import Business.Restaurant.RestaurantDirectory;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.Items;
+import Business.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
-import java.util.HashMap;
-import java.util.Map;
+import static java.lang.System.console;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -22,48 +22,34 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageMenuJPanel extends javax.swing.JPanel {
 
-    private JPanel userProcessContainer;
-    private EcoSystem system;
-    private UserAccount userAcc;
-    private Restaurant restaurant;
-
-    /**
-     * Creates new form ManageMenuJPanel
-     */
-    public ManageMenuJPanel(JPanel userProcessContainer, UserAccount userAcc, EcoSystem system) {
+   JPanel userProcessContainer;
+   EcoSystem business;
+   Enterprise enterprise;
+   Organization organization;
+   UserAccount account;
+   
+   
+    public ManageMenuJPanel(JPanel userProcessContainer,EcoSystem business,Enterprise enterprise,Organization organization,UserAccount account) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.userAcc = userAcc;
-        this.system = system;
-
-        restaurant = new Restaurant();
-        populateRestaurantJComboBox();
+        this.organization=organization;
+        this.enterprise=enterprise;
+        this.account=account;
+        this.business=business;
+        this.userProcessContainer=userProcessContainer;
+        populateTable();
     }
-public void populateRestaurantJComboBox() {
-        restaurantJComboBox.removeAllItems();
 
-        for (Restaurant rest : system.getRestaurantDirectory().getRestaurantList()) {
-            if (userAcc.getEmployee().getName().equals(rest.getName())) {
-                restaurantJComboBox.addItem(rest);
-            }
+    public void populateTable(){
+        DefaultTableModel dtm = (DefaultTableModel) ItemsListTable.getModel();
+        dtm.setRowCount(0);
+        
+        for(Items item:enterprise.getItemsList()) {
+            Object row[] = new Object[2];
+            row[0] = item;
+            row[1] = item.getPrice();
+            dtm.addRow(row);
         }
     }
-
-    private void populateTable(Restaurant restaurant) {
-        DefaultTableModel model = (DefaultTableModel) restaurantMenuJTable.getModel();
-
-        model.setRowCount(0);
-        HashMap<String, Double> menu = restaurant.getMenu();
-        if (menu != null) {
-            for (Map.Entry mapElement : menu.entrySet()) {
-                Object[] row = new Object[2];
-                row[0] = mapElement.getKey();
-                row[1] = mapElement.getValue();
-                model.addRow(row);
-            }
-        }
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,36 +59,56 @@ public void populateRestaurantJComboBox() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        restaurantJComboBox = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        restaurantMenuJTable = new javax.swing.JTable();
-        nameJTextField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        priceJTextField = new javax.swing.JTextField();
-        backJButton = new javax.swing.JButton();
-        addToMenuJButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        ItemNameTextField = new javax.swing.JTextField();
+        ItemPriceTextField = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ItemsListTable = new javax.swing.JTable();
+        UpdateBtn = new javax.swing.JButton();
+        updatePriceTextField = new javax.swing.JTextField();
+        deleteButton = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        restaurantJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        restaurantJComboBox.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Restaurant Menu");
+
+        jLabel2.setText("Item Name : ");
+
+        jLabel3.setText("Item Price : ");
+
+        ItemNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                restaurantJComboBoxActionPerformed(evt);
+                ItemNameTextFieldActionPerformed(evt);
             }
         });
 
-        restaurantMenuJTable.setModel(new javax.swing.table.DefaultTableModel(
+        ItemPriceTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemPriceTextFieldActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Add Item");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        ItemsListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Name", "Price"
+                "Item Name", "Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false
@@ -116,23 +122,26 @@ public void populateRestaurantJComboBox() {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(restaurantMenuJTable);
+        jScrollPane1.setViewportView(ItemsListTable);
 
-        jLabel2.setText("Name:");
-
-        jLabel4.setText("Price:");
-
-        backJButton.setText("<< Back");
-        backJButton.addActionListener(new java.awt.event.ActionListener() {
+        UpdateBtn.setText("Update Price");
+        UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButtonActionPerformed(evt);
+                UpdateBtnActionPerformed(evt);
             }
         });
 
-        addToMenuJButton.setText("Add to Menu");
-        addToMenuJButton.addActionListener(new java.awt.event.ActionListener() {
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addToMenuJButtonActionPerformed(evt);
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -140,98 +149,145 @@ public void populateRestaurantJComboBox() {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(101, 101, 101)
-                            .addComponent(restaurantJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel4))
-                            .addGap(43, 43, 43)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(priceJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(addToMenuJButton)))
-                        .addComponent(backJButton)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(updatePriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(UpdateBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(deleteButton))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ItemPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(31, 31, 31)
+                                    .addComponent(ItemNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton1))))
+                .addGap(0, 169, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(22, 22, 22)
-                    .addComponent(restaurantJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(27, 27, 27)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(priceJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(backJButton)
-                        .addComponent(addToMenuJButton))
-                    .addContainerGap(22, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(ItemNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(ItemPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(jButton1)
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteButton)
+                    .addComponent(UpdateBtn)
+                    .addComponent(updatePriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(88, 88, 88))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void restaurantJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurantJComboBoxActionPerformed
-        restaurant = (Restaurant) restaurantJComboBox.getSelectedItem();
-        if (restaurant != null) {
-            populateTable(restaurant);
+    private void ItemNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ItemNameTextFieldActionPerformed
+
+    private void ItemPriceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemPriceTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ItemPriceTextFieldActionPerformed
+
+    private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
+        // TODO add your handling code here:
+        
+        
+             int selectedRow = ItemsListTable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
         }
-    }//GEN-LAST:event_restaurantJComboBoxActionPerformed
+        else{
+            Items item = (Items)ItemsListTable.getValueAt(selectedRow, 0);
+            item.setPrice(Integer.parseInt(updatePriceTextField.getText()));
+        JOptionPane.showMessageDialog(null, "Item updated successfully");
+        populateTable();
+    } 
+    }//GEN-LAST:event_UpdateBtnActionPerformed
 
-    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        for(Items item:enterprise.getItemsList()) {
+            if(ItemNameTextField.getText().equals(item.getItemName())){
+                
+        JOptionPane.showMessageDialog(null, "Item already exists");
+        return;
+            } 
+        }
+        if(ItemNameTextField.getText().equals("")||ItemNameTextField.getText()==null){
+              JOptionPane.showMessageDialog(null, "Item can't be empty");
+        return;
+        }
+        for(Enterprise e: business.getEnterpriseDirectory().getEnterpriseList()){
+            if(e.getName().equalsIgnoreCase(enterprise.getName())){
+        Items item =enterprise.createMenuItem();
+        item.setItemName(ItemNameTextField.getText());
+        item.setPrice(Integer.parseInt(ItemPriceTextField.getText()));
+        populateTable();}
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+                  int selectedRow = ItemsListTable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
+        }
+        else{
+            Items item = (Items)ItemsListTable.getValueAt(selectedRow, 0);
+            enterprise.deleteItem(item);
+        JOptionPane.showMessageDialog(null, "Item deleted successfully");
+        populateTable();
+    } 
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-    }//GEN-LAST:event_backJButtonActionPerformed
-
-    private void addToMenuJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToMenuJButtonActionPerformed
-        if (nameJTextField.getText().isEmpty() || nameJTextField.getText() == null || priceJTextField.getText().isEmpty() || priceJTextField.getText() == null) {
-            JOptionPane.showMessageDialog(null, "Name and Price are mandatory !");
-            return;
-        } else if(!priceJTextField.getText().matches("[1-9]+[\\.\\d]*")){
-            JOptionPane.showMessageDialog(null, "Only numbers are allowed !");
-            return;
-        } else {
-            RestaurantDirectory restDir = new RestaurantDirectory();
-            String name = nameJTextField.getText();
-            Double price = Double.parseDouble(priceJTextField.getText());
-
-            restDir.updateRestaurantMenu(restaurant, name, price);
-
-            populateTable(restaurant);
-
-            nameJTextField.setText("");
-            priceJTextField.setText("");
-        }
-    }//GEN-LAST:event_addToMenuJButtonActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addToMenuJButton;
-    private javax.swing.JButton backJButton;
+    private javax.swing.JTextField ItemNameTextField;
+    private javax.swing.JTextField ItemPriceTextField;
+    private javax.swing.JTable ItemsListTable;
+    private javax.swing.JButton UpdateBtn;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField nameJTextField;
-    private javax.swing.JTextField priceJTextField;
-    private javax.swing.JComboBox restaurantJComboBox;
-    private javax.swing.JTable restaurantMenuJTable;
+    private javax.swing.JTextField updatePriceTextField;
     // End of variables declaration//GEN-END:variables
 }
