@@ -25,7 +25,8 @@ public class UpdateRestaurantJPanel extends javax.swing.JPanel {
     EcoSystem system;
     Enterprise enterprise;
 
-    UpdateRestaurantJPanel(JPanel cardSequenceJPanel,EcoSystem system, Enterprise ep) {
+    UpdateRestaurantJPanel(JPanel cardSequenceJPanel,
+            EcoSystem system, Enterprise ep) {
         initComponents();
         this.cardSequenceJPanel = cardSequenceJPanel;
         this.system=system;

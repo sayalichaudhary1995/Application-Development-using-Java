@@ -47,6 +47,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         manageOrganizationJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -77,6 +78,14 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         valueLabel.setText("<value>");
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 130, -1));
+
+        jButton1.setText("Manage Restaurant Info");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
@@ -92,10 +101,19 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ManageRestaurantInfo panel = new ManageRestaurantInfo(userProcessContainer,business,enterprise);
+        userProcessContainer.add("ManageRestaurantInfo", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton manageOrganizationJButton;

@@ -30,7 +30,8 @@ public class ManageRestaurantInfo extends javax.swing.JPanel {
 
    
 
-   public ManageRestaurantInfo(JPanel userProcessContainer, EcoSystem business, Enterprise ep, Organization organization, UserAccount account) {
+   public ManageRestaurantInfo(JPanel cardSequenceJPanel,
+            EcoSystem system, Enterprise ep) {
           initComponents();
           this.cardSequenceJPanel = cardSequenceJPanel;
         this.system=system;
