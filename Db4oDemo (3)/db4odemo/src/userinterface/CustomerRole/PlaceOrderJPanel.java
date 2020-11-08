@@ -31,6 +31,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private Organization organization;
     private Order order; 
+      String total;
     
     public PlaceOrderJPanel(JPanel userProcessContainer, 
             UserAccount account, 
@@ -44,8 +45,28 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         this.enterprise=enterprise;
         this.organization=organization;
         this.order=business.getOrderDirectory().createOrder() ;
+        
         populateComboBox();
+          this.total=populateTable();
+        totalBillTxt.setText(this.total);
     }
+    public String populateTable(){
+        DefaultTableModel dtm = (DefaultTableModel) workRequestJTable.getModel();
+        dtm.setRowCount(0);
+        int totalBill=0;
+        for(Items i:order.getItemsList()) {
+            Object row[] = new Object[2];
+            row[0] = i;
+            row[1] = i.getPrice();
+            totalBill=totalBill+i.getPrice();
+            dtm.addRow(row);
+            
+            
+        }  System.out.println(totalBill);
+        this.total=String.valueOf(totalBill);
+        totalBillTxt.setText(this.total);
+        return String.valueOf(totalBill);
+     }
     
     public void populateComboBox(){
          DefaultComboBoxModel dm=new DefaultComboBoxModel();
@@ -92,6 +113,8 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         customerNotesTxt = new javax.swing.JTextField();
+        totalBillTxt = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -205,45 +228,55 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Message");
 
+        totalBillTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalBillTxtActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setText("Total Bill: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(btnPlaceOrder)
-                                .addGap(26, 26, 26))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(btnDeleteFromCart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnAddToCart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(RestaurantComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnMenu))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(75, 75, 75))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addGap(42, 42, 42)
-                                .addComponent(customerNotesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(enterpriseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnPlaceOrder)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(btnDeleteFromCart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnAddToCart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel1)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(RestaurantComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnMenu))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel3)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(customerNotesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(182, 182, 182)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(totalBillTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,11 +306,18 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                             .addGap(3, 3, 3)
                             .addComponent(jLabel3))
                         .addComponent(customerNotesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPlaceOrder))
-                .addGap(60, 60, 60))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(btnPlaceOrder))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalBillTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -295,6 +335,8 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         item.setPrice(i.getPrice());
         JOptionPane.showMessageDialog(null, "Added to cart successfully");
         populateTableCart();
+        //populateTable();
+        
         }
         
        
@@ -318,13 +360,6 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm1 = (DefaultTableModel) workCartTable.getModel();
         dtm1.setRowCount(0);
         
-//        for(Items i:order.getItemsList()) {
-//            Object row[] = new Object[2];
-//            row[0] = i;
-//            row[1] = i.getPrice();
-//            
-//            dtm1.addRow(row);
-//        }
          }
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
 
@@ -366,21 +401,28 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         Enterprise selectedItem = (Enterprise) RestaurantComboBox.getSelectedItem();
         order.setRestaurantName(selectedItem.getName());
         order.setStatus("order placed");
-       order.setCustomerNotes(customerNotesTxt.getText());
+        order.setCustomerNotes(customerNotesTxt.getText());
         order.setCustomerUserName(userAccount.getUsername());
         order.setCustomerName(userAccount.getEmployee().getName());
         order.setCustomerId(userAccount.getEmployee().getId());
         
+//        totalBillTxt.setText(this.total);
+//        System.out.println(this.total);
         JOptionPane.showMessageDialog(null, "Order placed successfully");
+        populateTable();
+            System.out.println("total:"+this.total);
+        totalBillTxt.setText(this.total);
         
         repopulateTableCart();
         
         RestaurantComboBox.setEnabled(true);
         
-        CustomerBillJPanel panel = new CustomerBillJPanel(userProcessContainer,userAccount,order);
-        userProcessContainer.add("CustomerBillJPanel", panel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);}else{
+//        CustomerBillJPanel panel = new CustomerBillJPanel(userProcessContainer,userAccount,order);
+//        userProcessContainer.add("CustomerBillJPanel", panel);
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
+        }
+        else{
         JOptionPane.showMessageDialog(null, "No items in the order");
         }
         
@@ -397,6 +439,10 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_RestaurantComboBoxActionPerformed
 
+    private void totalBillTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalBillTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalBillTxtActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> RestaurantComboBox;
     private javax.swing.JButton btnAddToCart;
@@ -409,8 +455,10 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField totalBillTxt;
     private javax.swing.JTable workCartTable;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables

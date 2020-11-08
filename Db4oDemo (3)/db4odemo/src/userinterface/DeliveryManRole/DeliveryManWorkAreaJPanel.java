@@ -12,6 +12,7 @@ import Business.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -79,13 +80,13 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        orderDeliverBtn.setText("Order Delivered");
+        orderDeliverBtn.setText("Process");
         orderDeliverBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orderDeliverBtnActionPerformed(evt);
             }
         });
-        add(orderDeliverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 215, -1, -1));
+        add(orderDeliverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, -1, -1));
 
         refreshJButton.setText("Refresh");
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -138,13 +139,21 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         if(!(order1.getStatus().equals("assigned"))){
             JOptionPane.showMessageDialog(null, "Past order");
         }
-        else{
-        order1.setStatus("delivered");
-        JOptionPane.showMessageDialog(null, "Order is set to deliver");
+//        else{
+//        order1.setStatus("delivered");
+//        JOptionPane.showMessageDialog(null, "Order is set to deliver");
+//        populateTable();
+//        }
+        
+          else{
+        order1.setStatus("pending");
+         ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer, order1);
+        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        JOptionPane.showMessageDialog(null, "Order is pending");
         populateTable();
         }
-        
-         
             
         
     }//GEN-LAST:event_orderDeliverBtnActionPerformed
