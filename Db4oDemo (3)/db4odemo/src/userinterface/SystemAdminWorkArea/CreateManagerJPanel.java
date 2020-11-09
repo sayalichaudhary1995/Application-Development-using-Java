@@ -55,19 +55,19 @@ public class CreateManagerJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtEmployeeName = new javax.swing.JTextField();
+        txtManagerName = new javax.swing.JTextField();
         txtAirlinerName = new javax.swing.JTextField();
-        btnCreate = new javax.swing.JButton();
+        btnCreateManager = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         txtUserName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         usrNameLabel = new javax.swing.JLabel();
         PasswordLabel = new javax.swing.JLabel();
-        PasswordTxt = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Create New Manager");
+        jLabel1.setText("Create Manager");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -81,11 +81,11 @@ public class CreateManagerJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnCreate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnCreate.setText("Create Manager");
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+        btnCreateManager.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCreateManager.setText("Create Manager");
+        btnCreateManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
+                btnCreateManagerActionPerformed(evt);
             }
         });
 
@@ -98,7 +98,7 @@ public class CreateManagerJPanel extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Employee Name");
+        jLabel4.setText("Manager Name");
 
         usrNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         usrNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -108,9 +108,9 @@ public class CreateManagerJPanel extends javax.swing.JPanel {
         PasswordLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PasswordLabel.setText("Password");
 
-        PasswordTxt.addActionListener(new java.awt.event.ActionListener() {
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordTxtActionPerformed(evt);
+                txtPasswordActionPerformed(evt);
             }
         });
 
@@ -130,7 +130,7 @@ public class CreateManagerJPanel extends javax.swing.JPanel {
                                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(PasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCreate))
+                            .addComponent(btnCreateManager))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(208, 208, 208)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -139,10 +139,10 @@ public class CreateManagerJPanel extends javax.swing.JPanel {
                                 .addComponent(usrNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(10, 10, 10)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtManagerName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtAirlinerName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(PasswordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(306, 306, 306))
         );
         layout.setVerticalGroup(
@@ -157,7 +157,7 @@ public class CreateManagerJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtManagerName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usrNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,16 +168,16 @@ public class CreateManagerJPanel extends javax.swing.JPanel {
                         .addComponent(PasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(PasswordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreate))
+                    .addComponent(btnCreateManager))
                 .addGap(111, 111, 111))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+    private void btnCreateManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateManagerActionPerformed
         // TODO add your handling code here:
         
           //  System.out.println(" UA value "+.getUserAccountDirectory().getUserAccountList());
@@ -198,17 +198,17 @@ public class CreateManagerJPanel extends javax.swing.JPanel {
             }
 if (passwordPatternCorrect()==false){
     PasswordLabel.setForeground (Color.red);
-    PasswordTxt.setBorder(BorderFactory.createLineBorder(Color.RED));
+    txtPassword.setBorder(BorderFactory.createLineBorder(Color.RED));
     JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
     return;
 }else{
     PasswordLabel.setForeground (Color.GREEN);
-    PasswordTxt.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+    txtPassword.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 }
 
-      String employeeName=txtEmployeeName.getText();
+      String employeeName=txtManagerName.getText();
       String userName=txtUserName.getText();
-      String password=PasswordTxt.getText();
+      String password=txtPassword.getText();
         organization=(Organization)enterprise.getRestaurantDirectory().searchOrganization("RestaurantAdmin");
      Employee employee=organization.getEmployeeDirectory().createEmployee(employeeName);
      
@@ -219,11 +219,11 @@ if (passwordPatternCorrect()==false){
      System.out.println(" New employee name recorded in"+enterprise.getName()+ " for "+ enterprise.getRestaurantDirectory().searchOrganization("RestaurantAdmin")+" organization "+organization.getEmployeeDirectory().getEmployeeList().get(0).getName());
      System.out.println(" New account username recorded in organization "+organization.getUserAccountDirectory().getUserAccountList().get(0).getUsername());
      
-     txtEmployeeName.setEnabled(false);
+     txtManagerName.setEnabled(false);
      txtUserName.setEnabled(false);
-     PasswordTxt.setEnabled(false);
-     btnCreate.setEnabled(false);
-    }//GEN-LAST:event_btnCreateActionPerformed
+     txtPassword.setEnabled(false);
+     btnCreateManager.setEnabled(false);
+    }//GEN-LAST:event_btnCreateManagerActionPerformed
 
     private boolean usernamePatternCorrect(){
         Pattern p=Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
@@ -235,7 +235,7 @@ if (passwordPatternCorrect()==false){
      private boolean passwordPatternCorrect(){
         Pattern p1;
         p1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
-        Matcher m1=p1.matcher(PasswordTxt.getText());
+        Matcher m1=p1.matcher(txtPassword.getText());
         boolean b1=m1.matches();
         return b1;
     }
@@ -259,21 +259,21 @@ if (passwordPatternCorrect()==false){
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAirlinerNameActionPerformed
 
-    private void PasswordTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordTxtActionPerformed
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordTxtActionPerformed
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PasswordLabel;
-    private javax.swing.JTextField PasswordTxt;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnCreateManager;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txtAirlinerName;
-    private javax.swing.JTextField txtEmployeeName;
+    private javax.swing.JTextField txtManagerName;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUserName;
     private javax.swing.JLabel usrNameLabel;
     // End of variables declaration//GEN-END:variables

@@ -134,7 +134,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         Order order1 = (Order)workRequestJTable.getValueAt(selectedRow, 0);
-        if(!(order1.getStatus().equals("Assigned"))){
+        if(!(order1.getStatus().equals("assigned"))){
             JOptionPane.showMessageDialog(null, "Old order");
         }
 
