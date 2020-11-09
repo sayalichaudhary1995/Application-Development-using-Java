@@ -88,14 +88,14 @@ public class AssignDeliveryManJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 138, -1, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
 
         valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 130, -1));
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 130, -1));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 120, 30));
+        enterpriseLabel.setText("Delivery Management");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 220, 30));
 
         deliveryManComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +115,7 @@ public class AssignDeliveryManJPanel extends javax.swing.JPanel {
         order.setDeliveryManName(selectedItem.getEmployee().getName());  
         order.setDeliveryManUserName(selectedItem.getUsername()); 
         order.setDeliveryManId(selectedItem.getEmployee().getId()); 
-        JOptionPane.showMessageDialog(null, "Delivery man assigned successfully");
+        JOptionPane.showMessageDialog(null, "Assigned successfully");
          return ; 
         
         

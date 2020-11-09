@@ -67,18 +67,18 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ItemsListTable = new javax.swing.JTable();
-        UpdateBtn = new javax.swing.JButton();
+        btnChangeCost = new javax.swing.JButton();
         updatePriceTextField = new javax.swing.JTextField();
-        deleteButton = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Restaurant Menu");
+        jLabel1.setText("Menu");
 
-        jLabel2.setText("Item Name : ");
+        jLabel2.setText("Dish Name : ");
 
-        jLabel3.setText("Item Price : ");
+        jLabel3.setText("Cost");
 
         ItemNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +92,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Add Item");
+        jButton1.setText("Add Dish");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -104,7 +104,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Item Name", "Price"
+                "Dish", "Cost"
             }
         ) {
             Class[] types = new Class [] {
@@ -124,21 +124,21 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(ItemsListTable);
 
-        UpdateBtn.setText("Update Price");
-        UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnChangeCost.setText("Change Cost");
+        btnChangeCost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateBtnActionPerformed(evt);
+                btnChangeCostActionPerformed(evt);
             }
         });
 
-        deleteButton.setText("Delete");
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
-        jButton2.setText("back");
+        jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -158,12 +158,13 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                         .addGap(78, 78, 78)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnChangeCost)
+                                .addGap(42, 42, 42)
                                 .addComponent(updatePriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(UpdateBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(deleteButton))
+                                .addComponent(btnDelete))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel3)
@@ -171,9 +172,8 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                                     .addComponent(ItemPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
-                                    .addGap(31, 31, 31)
-                                    .addComponent(ItemNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButton1))))
+                                    .addGap(36, 36, 36)
+                                    .addComponent(ItemNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(0, 169, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -186,8 +186,8 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(ItemNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ItemNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -198,8 +198,8 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteButton)
-                    .addComponent(UpdateBtn)
+                    .addComponent(btnDelete)
+                    .addComponent(btnChangeCost)
                     .addComponent(updatePriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(88, 88, 88))
         );
@@ -213,7 +213,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_ItemPriceTextFieldActionPerformed
 
-    private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
+    private void btnChangeCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeCostActionPerformed
         // TODO add your handling code here:
         
         
@@ -228,7 +228,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Item updated successfully");
         populateTable();
     } 
-    }//GEN-LAST:event_UpdateBtnActionPerformed
+    }//GEN-LAST:event_btnChangeCostActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -253,7 +253,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
                   int selectedRow = ItemsListTable.getSelectedRow();
         if (selectedRow < 0) {
@@ -263,10 +263,10 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         else{
             Items item = (Items)ItemsListTable.getValueAt(selectedRow, 0);
             enterprise.deleteItem(item);
-        JOptionPane.showMessageDialog(null, "Item deleted successfully");
+        JOptionPane.showMessageDialog(null, "Deleted successfully");
         populateTable();
     } 
-    }//GEN-LAST:event_deleteButtonActionPerformed
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -280,8 +280,8 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField ItemNameTextField;
     private javax.swing.JTextField ItemPriceTextField;
     private javax.swing.JTable ItemsListTable;
-    private javax.swing.JButton UpdateBtn;
-    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton btnChangeCost;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

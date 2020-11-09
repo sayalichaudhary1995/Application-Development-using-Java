@@ -10,7 +10,6 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Organization;
 import static Business.Organization.Type.RestaurantAdmin;
-import Business.Role.CustomerRole;
 import Business.Role.DeliveryManRole;
 import Business.Role.RestaurantAdminRole;
 import Business.UserAccount.UserAccount;
@@ -27,22 +26,21 @@ import javax.swing.JPanel;
  *
  * @author sayu
  */
-public class CreateNewCustomerJPanel extends javax.swing.JPanel {
+public class CreateDeliveryManJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CreateNewManagerJPanel
+     * Creates new form CreateManagerJPanel
      */
     JPanel cardSequenceJPanel;
     EcoSystem system;
     Organization organization;
   
     
-    public CreateNewCustomerJPanel(JPanel cardSequenceJPanel,EcoSystem system,Organization organization) {
+    public CreateDeliveryManJPanel(JPanel cardSequenceJPanel,EcoSystem system,Organization organization) {
         initComponents();
         this.cardSequenceJPanel = cardSequenceJPanel;
         this.system=system;
         this.organization=organization;
-        
     }
 
     /**
@@ -66,15 +64,16 @@ public class CreateNewCustomerJPanel extends javax.swing.JPanel {
         passwordLabel = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Create New Customer");
+        jLabel1.setText("Create New Delivery Man");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Organization ");
+        jLabel2.setText("Organization");
 
-        txtAirlinerName.setText("Customer");
+        txtAirlinerName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtAirlinerName.setText("DeliveryMan");
         txtAirlinerName.setEnabled(false);
         txtAirlinerName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,13 +96,13 @@ public class CreateNewCustomerJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Name");
+        jLabel4.setText("Employee Name");
 
         UsrNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         UsrNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        UsrNameLabel.setText("Email Id");
+        UsrNameLabel.setText("UserName");
 
         passwordLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         passwordLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -122,37 +121,38 @@ public class CreateNewCustomerJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
+                        .addGap(238, 238, 238)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UsrNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UsrNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtAirlinerName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(323, 323, 323)
-                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(264, 264, 264)
+                        .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(274, 274, 274)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(520, 520, 520))
+                        .addContainerGap()
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(306, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAirlinerName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAirlinerName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,35 +161,35 @@ public class CreateNewCustomerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UsrNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreate)
-                    .addComponent(btnBack))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(59, 59, 59)
+                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        
-           for(UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()){
+        for(UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()){
             if(ua.getUsername().equals(txtUserName.getText())){
-                 JOptionPane.showMessageDialog(null, " UserName already exists.");
+                 JOptionPane.showMessageDialog(null, "Username should be unique. UserName is already in use.");
     return;
             }
         }
-    if (usernamePatternCorrect()==false){
+           if (usernamePatternCorrect()==false){
     UsrNameLabel.setForeground (Color.red);
     txtUserName.setBorder(BorderFactory.createLineBorder(Color.RED));
     JOptionPane.showMessageDialog(null, "Username should be in the format of xx_xx@xx.xx");
     return;
 } else{
-    UsrNameLabel.setForeground (Color.BLUE);
-    txtUserName.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+    UsrNameLabel.setForeground (Color.GREEN);
+    txtUserName.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 }
 if (passwordPatternCorrect()==false){
     passwordLabel.setForeground (Color.red);
@@ -197,20 +197,20 @@ if (passwordPatternCorrect()==false){
     JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
     return;
 }else{
-    passwordLabel.setForeground (Color.BLUE);
-    txtPassword.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+    passwordLabel.setForeground (Color.GREEN);
+    txtPassword.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 }
       String employeeName=txtEmployeeName.getText();
       String userName=txtUserName.getText();
       String password=txtPassword.getText();
         
      Employee employee=organization.getEmployeeDirectory().createEmployee(employeeName);
-     organization.getUserAccountDirectory().createUserAccount(userName,password,employee,new CustomerRole());
-     JOptionPane.showMessageDialog(null, "Customer added successfully");
+     organization.getUserAccountDirectory().createUserAccount(userName,password,employee,new DeliveryManRole());
+     JOptionPane.showMessageDialog(null, "Delivery Man added successfully");
+     btnCreate.setEnabled(false);
      txtEmployeeName.setEnabled(false);
      txtPassword.setEnabled(false);
      txtUserName.setEnabled(false);
-     btnCreate.setEnabled(false);
     }//GEN-LAST:event_btnCreateActionPerformed
   private boolean usernamePatternCorrect(){
         Pattern p=Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
@@ -233,9 +233,9 @@ if (passwordPatternCorrect()==false){
         layout.previous(cardSequenceJPanel);
         Component[] comps = this.cardSequenceJPanel.getComponents();
         for(Component comp : comps){
-            if(comp instanceof ManageCustomersJPanel){
-                ManageCustomersJPanel manageCustomersJPanel= (ManageCustomersJPanel) comp;
-               manageCustomersJPanel.populateTable(); 
+            if(comp instanceof ManageDeliveryMenJPanel){
+                ManageDeliveryMenJPanel manageDeliveryMenJPanel= (ManageDeliveryMenJPanel) comp;
+               manageDeliveryMenJPanel.populateTable1(); 
             }
         }
     }//GEN-LAST:event_btnBackActionPerformed

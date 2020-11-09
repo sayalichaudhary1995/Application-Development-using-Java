@@ -12,8 +12,6 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -43,7 +41,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     }
 
     public void populatePresentOrdersTable(){
-        DefaultTableModel dtm = (DefaultTableModel) CurrentOrdersTable.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) OrdersTable.getModel();
         dtm.setRowCount(0);
         for(Order o:business.getOrderDirectory().getOrderList())
         {
@@ -52,7 +50,6 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             Object row[] = new Object[4];
             row[0] = o;
             row[1] = o.getCustomerName();
-        //     row[2] = o.getCustomerNotes();
             row[2] = o.getStatus();
             row[3] = o.getRestaurantName();
             dtm.addRow(row);
@@ -74,8 +71,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         cancelBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        CurrentOrdersTable = new javax.swing.JTable();
-        ConfirmOrderBtn = new javax.swing.JButton();
+        OrdersTable = new javax.swing.JTable();
         putOrderbtn = new javax.swing.JButton();
         refreshJButton = new javax.swing.JButton();
 
@@ -92,7 +88,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText("Current Orders");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
 
-        CurrentOrdersTable.setModel(new javax.swing.table.DefaultTableModel(
+        OrdersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -115,17 +111,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(CurrentOrdersTable);
+        jScrollPane2.setViewportView(OrdersTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 950, 96));
-
-        ConfirmOrderBtn.setText("Confirm if received");
-        ConfirmOrderBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConfirmOrderBtnActionPerformed(evt);
-            }
-        });
-        add(ConfirmOrderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, -1, -1));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 780, 96));
 
         putOrderbtn.setText("Put Order");
         putOrderbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -146,46 +134,27 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
-         int selectedRow = CurrentOrdersTable.getSelectedRow();
+         int selectedRow = OrdersTable.getSelectedRow();
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row");
             return;
         }
         else{
-        Order o = (Order)CurrentOrdersTable.getValueAt(selectedRow,0 );        
+        Order o = (Order)OrdersTable.getValueAt(selectedRow,0 );        
         business.getOrderDirectory().deleteOrder(o);
         JOptionPane.showMessageDialog(null, "Order deleted successfully");
        populatePresentOrdersTable();
         }
     }//GEN-LAST:event_cancelBtnActionPerformed
 
-    private void ConfirmOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmOrderBtnActionPerformed
-        // TODO add your handling code here:
-         int selectedRow = CurrentOrdersTable.getSelectedRow();
-        if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a row");
-            return;
-        }
-        Order o = (Order)CurrentOrdersTable.getValueAt(selectedRow,0 );
-         if (!o.getStatus().equals("delivered")) {
-            JOptionPane.showMessageDialog(null, "This order is not yet delivered by us..!");
-            return;
-        }
-        o.setStatus("order received");
-        
-       populatePresentOrdersTable();
-       
-        
-    }//GEN-LAST:event_ConfirmOrderBtnActionPerformed
-
     private void putOrderbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_putOrderbtnActionPerformed
         // TODO add your handling code here:
-        PlaceOrderJPanel panel = new PlaceOrderJPanel(userProcessContainer,
+        OrderJPanel panel = new OrderJPanel(userProcessContainer,
             userAccount,
             organization,
             enterprise,
             business);
-        userProcessContainer.add("PlaceOrderJPanel", panel);
+        userProcessContainer.add("OrderJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
 
@@ -196,8 +165,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ConfirmOrderBtn;
-    private javax.swing.JTable CurrentOrdersTable;
+    private javax.swing.JTable OrdersTable;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;

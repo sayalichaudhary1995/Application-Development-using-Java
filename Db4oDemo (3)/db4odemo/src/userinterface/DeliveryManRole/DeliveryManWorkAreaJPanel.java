@@ -52,13 +52,11 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         for(Order order:business.getOrderDirectory().getOrderList()) {
   if(order.getDeliveryManName()!=null && order.getDeliveryManName().equals(userAccount.getEmployee().getName())){
-            Object row[] = new Object[5];
+            Object row[] = new Object[4];
             row[0] = order;
-            row[1] = order.getCustomerId();
-            row[2] = order.getCustomerName();
-       //     row[3] = order.getCustomerNotes();
-            row[3] = order.getStatus();
-            row[4] = order.getRestaurantName();
+            row[1] = order.getCustomerName();
+            row[2] = order.getStatus();
+            row[3] = order.getRestaurantName();
             dtm.addRow(row);
         }
     }
@@ -98,20 +96,20 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Order Id", "Customer Id", "Customer", "Status", "Restaurant Name"
+                "Order Id", "Customer", "Status", "Restaurant Name"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -136,14 +134,10 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         Order order1 = (Order)workRequestJTable.getValueAt(selectedRow, 0);
-        if(!(order1.getStatus().equals("assigned"))){
-            JOptionPane.showMessageDialog(null, "Past order");
+        if(!(order1.getStatus().equals("Assigned"))){
+            JOptionPane.showMessageDialog(null, "Old order");
         }
-//        else{
-//        order1.setStatus("delivered");
-//        JOptionPane.showMessageDialog(null, "Order is set to deliver");
-//        populateTable();
-//        }
+
         
           else{
         order1.setStatus("pending");
@@ -151,7 +145,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-        JOptionPane.showMessageDialog(null, "Order is pending");
+        JOptionPane.showMessageDialog(null, "Order is not delivered");
         populateTable();
         }
             

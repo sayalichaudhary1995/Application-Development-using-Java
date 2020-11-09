@@ -85,10 +85,10 @@ public class ManageRestaurantInfo extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel2.setText("Restaurant Name");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Address");
 
@@ -213,12 +213,12 @@ public class ManageRestaurantInfo extends javax.swing.JPanel {
         }
 
         else if(!(name.equalsIgnoreCase(enterprise.getName()))&&(String.valueOf(system.getEnterpriseDirectory().searchEnterprise(name))).equalsIgnoreCase(name)){
-            JOptionPane.showMessageDialog(null,"Restaurant by this name already exists");
+            JOptionPane.showMessageDialog(null,"Restaurant name already exists");
         }
         else {
             enterprise.setAddress(address);
             enterprise.setName(name);
-            JOptionPane.showMessageDialog(null, "Restaurant updated successfully");
+            JOptionPane.showMessageDialog(null, "Updated successfully");
             txtRestaurantName.setText(name);
             txtRestaurantAddress.setText(address);
             txtRestaurantAddress.setEnabled(false);

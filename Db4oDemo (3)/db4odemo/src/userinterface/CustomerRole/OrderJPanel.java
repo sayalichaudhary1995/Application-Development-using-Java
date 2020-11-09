@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author sayu
  */
-public class PlaceOrderJPanel extends javax.swing.JPanel {
+public class OrderJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private UserAccount userAccount;
@@ -33,7 +33,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     private Order order; 
       String total;
     
-    public PlaceOrderJPanel(JPanel userProcessContainer, 
+    public OrderJPanel(JPanel userProcessContainer, 
             UserAccount account, 
             Organization organization, 
             Enterprise enterprise, 
@@ -51,7 +51,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         totalBillTxt.setText(this.total);
     }
     public String populateTable(){
-        DefaultTableModel dtm = (DefaultTableModel) workRequestJTable.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) listJTable.getModel();
         dtm.setRowCount(0);
         int totalBill=0;
         for(Items i:order.getItemsList()) {
@@ -77,7 +77,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     }
     
     public void populateRequestTable(String restaurantName){
-     DefaultTableModel dtm = (DefaultTableModel) workRequestJTable.getModel();
+     DefaultTableModel dtm = (DefaultTableModel) listJTable.getModel();
         dtm.setRowCount(0);
         for(Enterprise e:business.getEnterpriseDirectory().getEnterpriseList())
         {
@@ -99,7 +99,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        workRequestJTable = new javax.swing.JTable();
+        listJTable = new javax.swing.JTable();
         btnAddToCart = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
@@ -109,14 +109,14 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         RestaurantComboBox = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        workCartTable = new javax.swing.JTable();
+        finalorderTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        customerNotesTxt = new javax.swing.JTextField();
+        messageTxt = new javax.swing.JTextField();
         totalBillTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
-        workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
+        listJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -124,7 +124,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "Item", "Price"
+                "Dish", "Cost"
             }
         ) {
             Class[] types = new Class [] {
@@ -142,10 +142,10 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(workRequestJTable);
-        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
-            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(listJTable);
+        if (listJTable.getColumnModel().getColumnCount() > 0) {
+            listJTable.getColumnModel().getColumn(0).setResizable(false);
+            listJTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
         btnAddToCart.setText("Add to cart");
@@ -166,7 +166,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         enterpriseLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         enterpriseLabel.setText("Place Order");
 
-        btnDeleteFromCart.setText("Delete from cart");
+        btnDeleteFromCart.setText("Delete Item");
         btnDeleteFromCart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteFromCartActionPerformed(evt);
@@ -195,7 +195,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             }
         });
 
-        workCartTable.setModel(new javax.swing.table.DefaultTableModel(
+        finalorderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -203,7 +203,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "Item", "Price"
+                "Dish", "Cost"
             }
         ) {
             Class[] types = new Class [] {
@@ -221,7 +221,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(workCartTable);
+        jScrollPane2.setViewportView(finalorderTable);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Cart");
@@ -250,10 +250,13 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                             .addComponent(jButton3)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnPlaceOrder)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(btnDeleteFromCart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnAddToCart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(btnAddToCart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(16, 16, 16))
+                                    .addComponent(btnPlaceOrder))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -265,18 +268,17 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                                             .addComponent(btnMenu))
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(77, 77, 77)
                                         .addComponent(jLabel3)
                                         .addGap(42, 42, 42)
-                                        .addComponent(customerNotesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(messageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(182, 182, 182)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(totalBillTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,16 +301,17 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                                 .addComponent(btnAddToCart)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnDeleteFromCart)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(3, 3, 3)
                             .addComponent(jLabel3))
-                        .addComponent(customerNotesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(messageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPlaceOrder))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
@@ -323,13 +326,13 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
       
-      int selectedRow = workRequestJTable.getSelectedRow();
+      int selectedRow = listJTable.getSelectedRow();
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row");
             return;
         }
         else{
-        Items i = (Items)workRequestJTable.getValueAt(selectedRow,0 );        
+        Items i = (Items)listJTable.getValueAt(selectedRow,0 );        
         Items item =order.addItem();
         item.setItemName(i.getItemName());
         item.setPrice(i.getPrice());
@@ -344,7 +347,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
 
     
     public void populateTableCart(){
-        DefaultTableModel dtm1 = (DefaultTableModel) workCartTable.getModel();
+        DefaultTableModel dtm1 = (DefaultTableModel) finalorderTable.getModel();
         dtm1.setRowCount(0);
         
         for(Items i:order.getItemsList()) {
@@ -357,7 +360,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
          }
     
     public void repopulateTableCart(){
-        DefaultTableModel dtm1 = (DefaultTableModel) workCartTable.getModel();
+        DefaultTableModel dtm1 = (DefaultTableModel) finalorderTable.getModel();
         dtm1.setRowCount(0);
         
          }
@@ -380,13 +383,13 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     
     private void btnDeleteFromCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteFromCartActionPerformed
         // TODO add your handling code here:
-        int selectedRow = workCartTable.getSelectedRow();
+        int selectedRow = finalorderTable.getSelectedRow();
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row");
             return;
         }
         else{
-        Items i = (Items)workCartTable.getValueAt(selectedRow,0 );        
+        Items i = (Items)finalorderTable.getValueAt(selectedRow,0 );        
         order.deleteItem(i);
         
         JOptionPane.showMessageDialog(null, "Deleted from cart successfully");
@@ -401,7 +404,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         Enterprise selectedItem = (Enterprise) RestaurantComboBox.getSelectedItem();
         order.setRestaurantName(selectedItem.getName());
         order.setStatus("order placed");
-        order.setCustomerNotes(customerNotesTxt.getText());
+        order.setMessage(messageTxt.getText());
         order.setCustomerUserName(userAccount.getUsername());
         order.setCustomerName(userAccount.getEmployee().getName());
         order.setCustomerId(userAccount.getEmployee().getId());
@@ -417,10 +420,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         
         RestaurantComboBox.setEnabled(true);
         
-//        CustomerBillJPanel panel = new CustomerBillJPanel(userProcessContainer,userAccount,order);
-//        userProcessContainer.add("CustomerBillJPanel", panel);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+
         }
         else{
         JOptionPane.showMessageDialog(null, "No items in the order");
@@ -449,8 +449,9 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnDeleteFromCart;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnPlaceOrder;
-    private javax.swing.JTextField customerNotesTxt;
+    private javax.swing.JTextField messageTxt;
     private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JTable finalorderTable;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -458,8 +459,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable listJTable;
     private javax.swing.JTextField totalBillTxt;
-    private javax.swing.JTable workCartTable;
-    private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }

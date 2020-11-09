@@ -134,22 +134,20 @@ public class MainJFrame extends javax.swing.JFrame {
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
         
-        //Step1: Check in the system admin user account directory if you have the user
+        
         UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
         
         Enterprise inEnterprise=null;
         Organization inOrganization=null;
         
         if(userAccount==null){
-            //Step 2: Go inside each network and check each enterprise
-           // for(Network network:system.getNetworkList()){
-                //Step 2.a: check against each enterprise
+            
                 for(Enterprise enterprise:system.getEnterpriseDirectory().getEnterpriseList())
                 {
-                    //userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                    
                     if(userAccount==null)
                     {
-                       //Step 3:check against each organization for each enterprise
+                  
                        for(Organization organization:enterprise.getRestaurantDirectory().getOrganizationList())
                        {
                            userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
@@ -172,7 +170,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 }
         }
         
-       // step-3 --to check for customer users
+      
        
         if(userAccount==null){
            for(Organization organization:system.getCustomerDirectory().getOrganizationList())
@@ -185,7 +183,7 @@ public class MainJFrame extends javax.swing.JFrame {
                            }
                        }
         }
-         //step-4--to check for deliver users
+        
                if(userAccount==null){
            for(Organization organization:system.getDeliveryManDirectory().getOrganizationList())
                        {

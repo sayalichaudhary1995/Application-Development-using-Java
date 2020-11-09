@@ -25,7 +25,7 @@ public class Order {
     private int deliveryManId;
     private String  customerUserName;
     private ArrayList<Items> itemsList;
-    private String customerNotes;
+    private String message;
     private String feedback;
     
       public Order() {
@@ -58,12 +58,12 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public String getCustomerNotes() {
-        return customerNotes;
+    public String getMessage() {
+        return message;
     }
 
-    public void setCustomerNotes(String customerNotes) {
-        this.customerNotes = customerNotes;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getDeliveryManUserName() {

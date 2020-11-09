@@ -169,8 +169,8 @@ public class UpdateUserJPanel extends javax.swing.JPanel {
     JOptionPane.showMessageDialog(null, "Username should be in the format of xx_xx@xx.xx");
     return;
 } else{
-    UsrNameLabel.setForeground (Color.BLUE);
-    txtUserName.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+    UsrNameLabel.setForeground (Color.GREEN);
+    txtUserName.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 }
 if (passwordPatternCorrect()==false){
     passwordLabel.setForeground (Color.red);
@@ -178,8 +178,8 @@ if (passwordPatternCorrect()==false){
     JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
     return;
 }else{
-    passwordLabel.setForeground (Color.BLUE);
-    txtPassword.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+    passwordLabel.setForeground (Color.GREEN);
+    txtPassword.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 }
         userAccount.setPassword(txtPassword.getText());
         userAccount.setUsername(txtUserName.getText());

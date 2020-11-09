@@ -47,17 +47,17 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
     }
     
     public void populateTable(){
-          DefaultTableModel dtm = (DefaultTableModel) orderRequestJTable.getModel();
+          DefaultTableModel dtm = (DefaultTableModel) orderJTable.getModel();
         dtm.setRowCount(0);
         for(Order order:business.getOrderDirectory().getOrderList()) {
    if(order.getRestaurantName()!=null && order.getRestaurantName().equals(enterprise.getName())){
-            Object row[] = new Object[5];
+            Object row[] = new Object[4];
             row[0] = order;
-            row[1] = order.getCustomerId();
-            row[2] = order.getCustomerName();
-            row[3] = order.getStatus();
-            row[4] = order.getCustomerNotes();
-      //      row[5] = order.getFeedback();
+            //row[1] = order.getCustomerId();
+            row[1] = order.getCustomerName();
+            row[2] = order.getStatus();
+            row[3] = order.getMessage();
+     
             dtm.addRow(row);
         }
     }
@@ -72,33 +72,33 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        orderRequestJTable = new javax.swing.JTable();
+        orderJTable = new javax.swing.JTable();
         refreshJButton = new javax.swing.JButton();
-        BtnDeliverOrder = new javax.swing.JButton();
-        AcceptOrderBtn = new javax.swing.JButton();
+        btnAssigndeliveryman = new javax.swing.JButton();
+        btnAcceptOrder = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        viewItemsBtn = new javax.swing.JButton();
+        btnOrderDetails = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        ItemsListTable = new javax.swing.JTable();
+        orderdetailsTable = new javax.swing.JTable();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        orderRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
+        orderJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Order Id", "Customer Id", "Customer Name", "Status", "Customer Notes"
+                "Order Id", "Customer Name", "Status", "Customer Notes"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -109,11 +109,10 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(orderRequestJTable);
-        if (orderRequestJTable.getColumnModel().getColumnCount() > 0) {
-            orderRequestJTable.getColumnModel().getColumn(1).setResizable(false);
-            orderRequestJTable.getColumnModel().getColumn(2).setResizable(false);
-            orderRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(orderJTable);
+        if (orderJTable.getColumnModel().getColumnCount() > 0) {
+            orderJTable.getColumnModel().getColumn(1).setResizable(false);
+            orderJTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 940, 96));
@@ -126,23 +125,23 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
         });
         add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 20, -1, -1));
 
-        BtnDeliverOrder.setText("Choose DeliveryMan");
-        BtnDeliverOrder.addActionListener(new java.awt.event.ActionListener() {
+        btnAssigndeliveryman.setText("Assign DeliveryMan");
+        btnAssigndeliveryman.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnDeliverOrderActionPerformed(evt);
+                btnAssigndeliverymanActionPerformed(evt);
             }
         });
-        add(BtnDeliverOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
+        add(btnAssigndeliveryman, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
 
-        AcceptOrderBtn.setText("Accept Order");
-        AcceptOrderBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnAcceptOrder.setText("Accept Order");
+        btnAcceptOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AcceptOrderBtnActionPerformed(evt);
+                btnAcceptOrderActionPerformed(evt);
             }
         });
-        add(AcceptOrderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
+        add(btnAcceptOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
-        jButton1.setText("back");
+        jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -150,20 +149,20 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
         });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
-        viewItemsBtn.setText("View Items");
-        viewItemsBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnOrderDetails.setText("Order Details");
+        btnOrderDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewItemsBtnActionPerformed(evt);
+                btnOrderDetailsActionPerformed(evt);
             }
         });
-        add(viewItemsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        add(btnOrderDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
-        ItemsListTable.setModel(new javax.swing.table.DefaultTableModel(
+        orderdetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Item Name", "Price"
+                "Dish", "Cost"
             }
         ) {
             Class[] types = new Class [] {
@@ -181,64 +180,62 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(ItemsListTable);
+        jScrollPane2.setViewportView(orderdetailsTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 290, 170));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 280, 60));
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
         populateTable();
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
-    private void BtnDeliverOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeliverOrderActionPerformed
+    private void btnAssigndeliverymanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssigndeliverymanActionPerformed
         // TODO add your handling code here:
-         int selectedRow = orderRequestJTable.getSelectedRow();
+         int selectedRow = orderJTable.getSelectedRow();
        
        if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select an order"); 
             
         }
         
-        Order order1 = (Order)orderRequestJTable.getValueAt(selectedRow, 0);
+        Order order1 = (Order)orderJTable.getValueAt(selectedRow, 0);
          if(order1.getStatus().equals("delivered")){
-            JOptionPane.showMessageDialog(null, "This order has already been delivered");
+            JOptionPane.showMessageDialog(null, "This order is delivered");
           }
          else if(order1.getStatus().equals("order received")){
-             JOptionPane.showMessageDialog(null, "Past delivery, already received by the customer");
+             JOptionPane.showMessageDialog(null, "order received by the customer");
          }
          else if(order1.getStatus().equals("order placed")){
-            JOptionPane.showMessageDialog(null, "Restaurant needs to accept the order first");
+            JOptionPane.showMessageDialog(null, "accept the order first");
           }
          else if(order1.getStatus().equals("assigned")){
-             JOptionPane.showMessageDialog(null, "Already assigned to delivery");
+             JOptionPane.showMessageDialog(null, "Already assigned");
          }
-//         if(!order1.getStatus().equals("accepted")){
-//            JOptionPane.showMessageDialog(null, "Please accept the order first");
-//         return ; }
+        
          else{
          AssignDeliveryManJPanel panel = new AssignDeliveryManJPanel(userProcessContainer,order1,business);
         userProcessContainer.add("AssignDeliveryManJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
          }
-    }//GEN-LAST:event_BtnDeliverOrderActionPerformed
+    }//GEN-LAST:event_btnAssigndeliverymanActionPerformed
 
-    private void AcceptOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptOrderBtnActionPerformed
+    private void btnAcceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptOrderActionPerformed
         // TODO add your handling code here:
-        int selectedRow = orderRequestJTable.getSelectedRow();
+        int selectedRow = orderJTable.getSelectedRow();
        
        if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select an order"); 
             
         }
         
-        Order order1 = (Order)orderRequestJTable.getValueAt(selectedRow, 0);
+        Order order1 = (Order)orderJTable.getValueAt(selectedRow, 0);
         
         if(order1.getStatus().equals("delivered")){
-            JOptionPane.showMessageDialog(null, "This order is already delivery");
+            JOptionPane.showMessageDialog(null, "Order is already delivery");
         }
         else if(order1.getStatus().equals("order received")){
-             JOptionPane.showMessageDialog(null, "Not an eligible order. This is received by user.");
+             JOptionPane.showMessageDialog(null, "already received by user.");
         }
         else if(order1.getStatus().equals("assigned")){
              JOptionPane.showMessageDialog(null, "Already assigned to delivery");
@@ -251,7 +248,7 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
          order1.setStatus("accepted");
          JOptionPane.showMessageDialog(null, "Order accepted successfully");
         }
-    }//GEN-LAST:event_AcceptOrderBtnActionPerformed
+    }//GEN-LAST:event_btnAcceptOrderActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -261,15 +258,15 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void viewItemsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemsBtnActionPerformed
+    private void btnOrderDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderDetailsActionPerformed
         // TODO add your handling code here:
-       int selectedRow = orderRequestJTable.getSelectedRow();
+       int selectedRow = orderJTable.getSelectedRow();
        if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select an order"); 
             return;
         }
-       Order order1 = (Order)orderRequestJTable.getValueAt(selectedRow, 0);
-            DefaultTableModel dtm = (DefaultTableModel) ItemsListTable.getModel();
+       Order order1 = (Order)orderJTable.getValueAt(selectedRow, 0);
+            DefaultTableModel dtm = (DefaultTableModel) orderdetailsTable.getModel();
         dtm.setRowCount(0);
         for(Items i:order1.getItemsList()) {
             Object row[] = new Object[2];
@@ -281,17 +278,17 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
        
         
         
-    }//GEN-LAST:event_viewItemsBtnActionPerformed
+    }//GEN-LAST:event_btnOrderDetailsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AcceptOrderBtn;
-    private javax.swing.JButton BtnDeliverOrder;
-    private javax.swing.JTable ItemsListTable;
+    private javax.swing.JButton btnAcceptOrder;
+    private javax.swing.JButton btnAssigndeliveryman;
+    private javax.swing.JButton btnOrderDetails;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable orderRequestJTable;
+    private javax.swing.JTable orderJTable;
+    private javax.swing.JTable orderdetailsTable;
     private javax.swing.JButton refreshJButton;
-    private javax.swing.JButton viewItemsBtn;
     // End of variables declaration//GEN-END:variables
 }
